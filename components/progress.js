@@ -40,6 +40,12 @@ const postProgressData = {
     }
 };
 
+// ページの時系列順序を定義
+const postPages = [
+    { date: '2026-01-19', title: 'チュートリアルまで' },
+    { date: '2026-01-21', title: '1章 その1' }
+];
+
 // ページに応じた進捗情報を自動表示
 function initializePostProgress() {
     // 記事の日付を取得
@@ -53,6 +59,30 @@ function initializePostProgress() {
     const progressContainer = document.getElementById('progress-container');
     if (progressContainer) {
         renderProgressInfo('#progress-container', progressData);
+    }
+    
+    // ページナビゲーション（前後のリンク）を表示
+    renderPageNavigation(postDate);
+}
+
+// ページナビゲーション（前後のリンク）を生成
+function renderPageNavigation(currentDate) {
+    const currentIndex = postPages.findIndex(page => page.date === currentDate);
+    if (currentIndex === -1) return;
+    
+    const prevPage = currentIndex > 0 ? postPages[currentIndex - 1] : null;
+    const nextPage = currentIndex < postPages.length - 1 ? postPages[currentIndex + 1] : null;
+    
+    const navHTML = `
+        <div class="post-navigation">
+            ${prevPage ? `<a href="../posts/${prevPage.date}.html" class="nav-prev">← 前の記事: ${prevPage.title}</a>` : '<span></span>'}
+            ${nextPage ? `<a href="../posts/${nextPage.date}.html" class="nav-next">次の記事: ${nextPage.title} →</a>` : '<span></span>'}
+        </div>
+    `;
+    
+    const backLink = document.querySelector('.back-link');
+    if (backLink) {
+        backLink.insertAdjacentHTML('beforebegin', navHTML);
     }
 }
 

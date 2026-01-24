@@ -152,6 +152,46 @@ header p {
     text-decoration: underline;
 }
 
+.post-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.post-navigation a {
+    flex: 1;
+    padding: 1rem;
+    background-color: #f0f4ff;
+    border-radius: 6px;
+    color: #667eea;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid #e0e7ff;
+    text-align: center;
+    font-weight: 500;
+}
+
+.post-navigation a:hover {
+    background-color: #e0e7ff;
+    border-color: #667eea;
+    color: #764ba2;
+}
+
+.post-navigation .nav-prev {
+    text-align: left;
+}
+
+.post-navigation .nav-next {
+    text-align: right;
+}
+
+.post-navigation span {
+    flex: 1;
+}
+
 .sidebar {
     background: white;
     padding: 1.5rem;
